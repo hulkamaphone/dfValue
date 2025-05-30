@@ -434,8 +434,8 @@ def main(stock_list_arg):
     else:
         # 4. Process scraped DCF values (extract currency, convert to USD)
         processed_scraped_df = process_scraped_values(scraped_dcf_df)
-        print("\n--- Processed DCF Data (Sample) ---")
-        print(processed_scraped_df.head().to_string())
+        #print("\n--- Processed DCF Data (Sample) ---")
+        #print(processed_scraped_df.head().to_string())
 
 
     # 5. Merge yfinance data with processed scraped data and calculate opportunity
@@ -472,17 +472,12 @@ def main(stock_list_arg):
     if 'price' in display_df_view.columns:
          display_df_view['price'] = display_df_view['price'].map(lambda x: f"{x:.2f}" if pd.notnull(x) else "N/A")
 
-
+    # Show analysis table view.
     print(display_df_view.to_string(index=False))
-    
-    print("\n--- Detailed Data for All Stocks ---")
-    pd.set_option('display.max_columns', None) # Show all columns
-    pd.set_option('display.width', 1000) # Adjust width for better display
-    print(sorted_df.to_string(index=False))
 
+    # Print complete message.
     print("\nAnalysis complete.")
     print("-" * 30)
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Stock Valuation Analysis Tool")
